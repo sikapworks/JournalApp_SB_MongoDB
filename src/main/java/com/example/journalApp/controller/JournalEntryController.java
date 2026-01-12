@@ -3,41 +3,40 @@ import java.util.*;
 
 import com.example.journalApp.entity.JournalEntry;
 import com.example.journalApp.service.JournalEntryService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/_journal")
+@RequestMapping("/journal")
 public class JournalEntryController {
 
-    private final JournalEntryService service;
-
-    public JournalEntryController(JournalEntryService service) {
-        this.service = service;
-    }
+    @Autowired
+    private JournalEntryService journalEntryService;
 
     @GetMapping
     public List<JournalEntry> getAll() {
-        return service.getAll();
+        return null;
     }
 
     @PostMapping
-    public JournalEntry create(@RequestBody JournalEntry entry) {
-        return service.create(entry);
+    public boolean create(@RequestBody JournalEntry entry) {
+        journalEntryService.saveEntry(entry);
+        return true;
     }
 
     @GetMapping("/id/{id}")
     public JournalEntry getById(@PathVariable Long id) {
-        return service.getById(id);
+        return null;
     }
 
     @PutMapping("/id/{id}")
     public JournalEntry update(@PathVariable Long id, @RequestBody JournalEntry entry) {
-        return service.update(id, entry);
+        return null;
     }
 
     @DeleteMapping("/id/{id}")
     public JournalEntry delete(@PathVariable Long id) {
-        return service.delete(id);
+        return null;
     }
 }
 

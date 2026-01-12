@@ -1,45 +1,21 @@
 package com.example.journalApp.service;
 
 import com.example.journalApp.entity.JournalEntry;
-import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import com.example.journalApp.repository.JournalEntryRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 //controller --> service --> repository
 
-
-@Service
+@Component
+//@Service
 public class JournalEntryService {
 
-    //since no DB
-    private Map<Long, JournalEntry> journalEntries = new HashMap<>();
-    private long idCounter = 1;
+    @Autowired  //DI
+    private JournalEntryRepository journalEntryRepository;
 
-    public List<JournalEntry> getAll() {
-        return new ArrayList<>(journalEntries.values());
-    }
-
-    public JournalEntry create(JournalEntry entry) {
-        entry.setId(idCounter++);
-        journalEntries.put(entry.getId(), entry);
-        return entry;
-    }
-
-    public JournalEntry getById(Long id) {
-        return journalEntries.get(id);
-    }
-
-    public JournalEntry update(Long id, JournalEntry entry) {
-        entry.setId(id);
-        journalEntries.put(id, entry);
-        return entry;
-    }
-
-    public JournalEntry delete(Long id) {
-        return journalEntries.remove(id);
+    public void saveEntry(JournalEntry journalEntry) {
+        journalEntryRepository.save(journalEntry);
     }
 }
 

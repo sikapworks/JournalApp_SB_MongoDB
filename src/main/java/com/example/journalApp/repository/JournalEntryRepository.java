@@ -1,6 +1,12 @@
 package com.example.journalApp.repository;
 
 
+import com.example.journalApp.entity.JournalEntry;
+import org.springframework.data.mongodb.repository.MongoRepository;
 
-public interface JournalEntryRepository extends MongoRepository {
+//MongoRepository<"to be performed on", "datatype of id">
+
+public interface JournalEntryRepository extends MongoRepository<JournalEntry, String> {
+
+
 }
