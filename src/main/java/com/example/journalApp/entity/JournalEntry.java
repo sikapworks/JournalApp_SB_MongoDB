@@ -1,51 +1,26 @@
 package com.example.journalApp.entity;
 
+import lombok.*;
+import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @Document(collection = "journal_entries")  //maps as a row
+@Data  //generates all the ones given below
+//@Getter
+//@Setter
+//@NoArgsConstructor
+//@AllArgsConstructor
+//@ToString
+//@EqualsAndHashCode
+//@Builder
 public class JournalEntry {
-
     @Id //maps as primary key
-    private String id;
-
+    private ObjectId id;
     private String title;
-
     private String content;
-
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
-    }
-
-    private Date date;
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
+    private LocalDateTime date;
 }
+
+
